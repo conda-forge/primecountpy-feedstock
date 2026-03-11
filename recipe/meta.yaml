@@ -29,11 +29,12 @@ requirements:
     - cysignals
     - meson-python
     - pip
-    - primecount >8.0.0
+    - primecount >8.0
     - python
   run:
     - cysignals
     - python
+    - primecount >8.0
 
 test:
   imports:
