@@ -1,5 +1,5 @@
 {% set name = "primecountpy" %}
-{% set version = "0.1.1" %}
+{% set version = "0.2.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/primecountpy-{{ version }}.tar.gz
-  sha256: c8561817c0be86eeffc41b97b6ef617d795f72cf3de59d9234d1c83d7e424030
+  sha256: 888706ab65cc089fb983de4639360dddc728baa4d9877a7ad8b116f645650b39
 
 build:
   skip: true  # [py<311]
