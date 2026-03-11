@@ -12,9 +12,11 @@ source:
     - fix-prime-pi-128-cast.patch
 
 build:
+  # Skipping 3.11 because cysignals 1.12.6 dropped support
   skip: true  # [py<312]
-  script: {{ PYTHON }} -m pip install . -vv --no-build-isolation -Csetup-args=--wrap-mode=nofallback  # [not win]
-  script: copy %LIBRARY_LIB%\primesieve.dll.lib %LIBRARY_LIB%\primesieve.lib && {{ PYTHON }} -m pip install . -vv --no-build-isolation -Csetup-args=--wrap-mode=nofallback  # [win]
+  script:
+    - copy %LIBRARY_LIB%\primesieve.dll.lib %LIBRARY_LIB%\primesieve.lib   # [win]
+    - {{ PYTHON }} -m pip install . -vv --no-build-isolation -Csetup-args=--wrap-mode=nofallback
   number: 0
 
 requirements:
