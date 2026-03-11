@@ -12,8 +12,8 @@ source:
 build:
   skip: true  # [py<311]
   skip: true  # [win]
-  script: {{ PYTHON }} -m pip install . -vv
-  number: 2
+  script: {{ PYTHON }} -m pip install . -vv --no-build-isolation -Csetup-args=--wrap-mode=nofallback
+  number: 0
 
 requirements:
   build:
@@ -22,12 +22,15 @@ requirements:
     - cython                                 # [build_platform != target_platform]
     - {{ compiler('cxx') }}
     - {{ stdlib("c") }}
+    - meson
+    - ninja
+    - pkg-config
   host:
     - cysignals
     - cython
+    - meson-python
     - pip
-    - setuptools
-    - primecount
+    - primecount > 8.0.0
     - python
   run:
     - cysignals
