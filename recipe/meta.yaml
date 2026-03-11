@@ -8,6 +8,8 @@ package:
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/primecountpy-{{ version }}.tar.gz
   sha256: 888706ab65cc089fb983de4639360dddc728baa4d9877a7ad8b116f645650b39
+  patches:
+    - fix-prime-pi-128-cast.patch
 
 build:
   skip: true  # [py<312]
@@ -42,6 +44,8 @@ requirements:
 test:
   imports:
     - primecountpy
+  commands:
+    - python -c "from primecountpy.primecount import prime_pi; assert prime_pi(1000) == 168"
 
 about:
   home: https://github.com/dimpase/primecountpy
