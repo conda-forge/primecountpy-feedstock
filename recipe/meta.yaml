@@ -13,7 +13,8 @@ source:
 
 build:
   skip: true  # [py<312]
-  script: {{ PYTHON }} -m pip install . -vv --no-build-isolation -Csetup-args=--wrap-mode=nofallback
+  script: {{ PYTHON }} -m pip install . -vv --no-build-isolation -Csetup-args=--wrap-mode=nofallback  # [not win]
+  script: copy %LIBRARY_LIB%\primesieve.dll.lib %LIBRARY_LIB%\primesieve.lib && {{ PYTHON }} -m pip install . -vv --no-build-isolation -Csetup-args=--wrap-mode=nofallback  # [win]
   number: 0
 
 requirements:
@@ -34,7 +35,7 @@ requirements:
     - meson-python
     - pip
     - primecount >8.0
-    - primesieve
+    - primesieve  # [win]
     - python
   run:
     - cysignals
