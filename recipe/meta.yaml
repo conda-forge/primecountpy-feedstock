@@ -26,6 +26,7 @@ requirements:
     - {{ stdlib("c") }}
     - meson
     - ninja
+    - pkg-config
   host:
     - cysignals
     - cython
