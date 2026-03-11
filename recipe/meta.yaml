@@ -30,7 +30,7 @@ requirements:
     - cython
     - meson-python
     - pip
-    - primecount > 8.0.0
+    - primecount >8.0.0
     - python
   run:
     - cysignals
