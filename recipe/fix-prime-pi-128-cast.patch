@@ -2,7 +2,12 @@ diff --git a/src/primecountpy/primecount.pyx b/src/primecountpy/primecount.pyx
 index 69a344e..a219488 100644
 --- a/src/primecountpy/primecount.pyx
 +++ b/src/primecountpy/primecount.pyx
-@@ -68,7 +68,7 @@ cpdef prime_pi_128(n):
+@@ -1,3 +1,4 @@
++# cython: freethreading_compatible = True
+ r"""
+ Interface to the `primecount <https://github.com/kimwalisch/primecount>`_
+ C++ library
+@@ -69,7 +70,7 @@ cpdef prime_pi_128(n):
      sig_on()
      ans = pcount.pi(s)
      sig_off()
