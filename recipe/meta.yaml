@@ -19,7 +19,7 @@ requirements:
   build:
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-    - cython                                 # [build_platform != target_platform]
+    - cython
     - {{ compiler('cxx') }}
     - {{ stdlib("c") }}
     - meson
@@ -27,7 +27,6 @@ requirements:
     - pkg-config
   host:
     - cysignals
-    - cython
     - meson-python
     - pip
     - primecount >8.0.0
