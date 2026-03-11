@@ -1,5 +1,5 @@
 {% set name = "primecountpy" %}
-{% set version = "0.1.1" %}
+{% set version = "0.2.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,27 +7,34 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/primecountpy-{{ version }}.tar.gz
-  sha256: c8561817c0be86eeffc41b97b6ef617d795f72cf3de59d9234d1c83d7e424030
+  sha256: 888706ab65cc089fb983de4639360dddc728baa4d9877a7ad8b116f645650b39
+  patches:
+    - fix-prime-pi-128-cast.patch
 
 build:
-  skip: true  # [py<311]
-  skip: true  # [win]
-  script: {{ PYTHON }} -m pip install . -vv
-  number: 1
+  # Skipping 3.11 because cysignals 1.12.6 dropped support
+  skip: true  # [py<312]
+  number: 0
 
 requirements:
   build:
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-    - cython                                 # [build_platform != target_platform]
+    - cython
+    - cysignals
+    - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ stdlib("c") }}
+    - meson
+    - ninja
+    - pkg-config
   host:
     - cysignals
     - cython
+    - meson-python
     - pip
-    - setuptools
-    - primecount
+    - primecount >8.0
+    - primesieve  # [win]
     - python
   run:
     - cysignals
@@ -36,6 +43,8 @@ requirements:
 test:
   imports:
     - primecountpy
+  commands:
+    - python -c "from primecountpy.primecount import prime_pi; assert prime_pi(1000) == 168"
 
 about:
   home: https://github.com/dimpase/primecountpy
