@@ -14,7 +14,7 @@ source:
 build:
   # Skipping 3.11 because cysignals 1.12.6 dropped support
   skip: true  # [py<312]
-  number: 0
+  number: 1
 
 requirements:
   build:
