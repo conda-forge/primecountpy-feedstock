@@ -34,7 +34,7 @@ requirements:
     - meson-python
     - pip
     - primecount >8.0
-    - primesieve  # [win]
+    - primesieve >=12.18  # [win]
     - python
   run:
     - cysignals
