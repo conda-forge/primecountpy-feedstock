@@ -14,7 +14,7 @@ source:
 build:
   # Skipping 3.11 because cysignals 1.12.6 dropped support
   skip: true  # [py<312]
-  number: 1
+  number: 2
 
 requirements:
   build:
@@ -27,14 +27,14 @@ requirements:
     - {{ stdlib("c") }}
     - meson
     - ninja
-    - pkg-config
+    - pkgconf
   host:
     - cysignals
     - cython
     - meson-python
     - pip
     - primecount >8.0
-    - primesieve  # [win]
+    - primesieve >=12.18  # [win]
     - python
   run:
     - cysignals
